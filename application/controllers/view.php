@@ -54,7 +54,7 @@ class View extends MY_Controller {
 					break;
 				
 				case 'list':
-					$size = $redis -> lSize($key);
+					$size = $redis -> lLen($key);
 					$values = $redis -> lRange($key, 0, -1);
 					$template = 'view_list';
 					break;

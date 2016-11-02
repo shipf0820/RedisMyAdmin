@@ -45,7 +45,7 @@ class Delete extends MY_Controller {
 		$tree .= '*';
 		$keys = $redis -> keys($tree);
 		foreach($keys as $key) {
-			$redis -> delete($key);
+			$redis -> del($key);
 		}
 	}
 	
@@ -55,7 +55,7 @@ class Delete extends MY_Controller {
 		switch($type) {
 			default:	//如果传空，即是整key删除
 			case 'string':
-				$redis -> delete($key);
+				$redis -> del($key);
 					
 				break;
 					
@@ -91,7 +91,7 @@ class Delete extends MY_Controller {
 			case 'zset':
 				$value = get_arg('value');
 				if ( $value !== NULL ){
-					$redis -> zDelete($key, $value);
+					$redis -> zRem($key, $value);
 				}
 				break;
 		}
